@@ -1,4 +1,5 @@
-import { changeFilter, selectFilters } from '../../redux/filtersSlice';
+import { changeFilter } from '../../redux/filters/slice';
+import { selectFilterName } from '../../redux/filters/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { GoSearch } from 'react-icons/go';
@@ -8,7 +9,7 @@ import ContactCount from '../ContactCount/ContactCount';
 import css from './SearchBox.module.css';
 
 export default function SearchBox() {
-  const { name } = useSelector(selectFilters);
+  const name = useSelector(selectFilterName);
   const dispatch = useDispatch();
 
   const handleChangeFilter = e => {
@@ -25,7 +26,7 @@ export default function SearchBox() {
         type="text"
         value={name}
         onChange={handleChangeFilter}
-        placeholder="Search for contact by last name or phone number"
+        placeholder="Search by name or number"
       />
       <div className={css.contactCount}>
         <ContactCount />
